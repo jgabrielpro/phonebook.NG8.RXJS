@@ -1,0 +1,31 @@
+.nav-link {
+  font-family: "Cabo Slab-Regular";
+  font-size: large;
+  letter-spacing: 2px;
+  // color: white !important;
+  padding: 10px;
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+}
+
+.nav-link:hover {
+  // color: #e1e1e1 !important;
+}
+
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .nav-link {
+    font-size: inherit;
+    padding: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+//   .mx-auto.d-sm-flex.d-block.flex-sm-nowrap {
+//     text-align: center;
+// }
+
+
+
