@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-header">BroadCast Message
+    <button class="btn btn-light btn-sm float-right" (click)="close()" >x </button></div>
+</div>
+
+<div class="card-body">
+  <div *ngFor="let message of messages; let i = index; trackBy: trackByService.trackby" >
+    <div class="message-row">
+      {{messages}}
+    </div>
+  </div>
+</div>
