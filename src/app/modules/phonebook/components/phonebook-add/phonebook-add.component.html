@@ -1,0 +1,354 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4>{{ pageTitle }}</h4>
+  </div>
+
+  <div class="panel panel-body">
+    <form
+      class="form-horizontal"
+      (ngSubmit)="onSubmit()"
+      [formGroup]="contactForm"
+      novalidate
+    >
+      <div
+        class="form-group"
+        [ngClass]="{
+          'has-error':
+            (contactForm.get('firstName').touched ||
+              contactForm.get('firstName').dirty) &&
+            contactForm.get('firstName').errors
+        }"
+      >
+        <label for="firstNameId" class="col-md-2 control-label"
+          >First Name <span class="required">*</span>
+        </label>
+        <div class="col-md-8">
+          <input
+            type="text"
+            id="firstNameId"
+            class="form-control"
+            placeholder="First Name"
+            formControlName="firstName"
+          />
+          <em
+            class="text-danger"
+            *ngIf="
+              (contactForm.get('firstName').touched ||
+                contactForm.get('firstName').dirty) &&
+              contactForm.get('firstName').errors?.required
+            "
+            >please enter your first Name</em
+          >
+          <em
+            class="text-danger"
+            *ngIf="
+              (contactForm.get('firstName').touched ||
+                contactForm.get('firstName').dirty) &&
+              contactForm.get('firstName').errors?.minlength
+            "
+            >First Name can not be less than 5 characters</em
+          >
+        </div>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          'has-error':
+            (contactForm.get('lastName').dirty ||
+              contactForm.get('lastName').touched) &&
+            contactForm.get('lastName').errors
+        }"
+      >
+        <label for="lastNameId" class="col-md-2 control-label"
+          >Last Name <span class="required">*</span></label
+        >
+        <div class="col-md-8">
+          <input
+            type="text"
+            id="lastNameId"
+            class="form-control"
+            placeholder="Last Name"
+            formControlName="lastName"
+          />
+          <em
+            class="text-danger"
+            *ngIf="
+              (contactForm.get('lastName').dirty ||
+                contactForm.get('lastName').touched) &&
+              contactForm.get('lastName').errors?.required
+            "
+            >please enter your last name</em
+          >
+          <em
+            class="text-danger"
+            *ngIf="
+              (contactForm.get('lastName').dirty ||
+                contactForm.get('lastName').touched) &&
+              contactForm.get('lastName').errors?.minlength
+            "
+            >Last Name cannot exceed 5 characters</em
+          >
+        </div>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          'has-error':
+            (contactForm.get('email').dirty ||
+              contactForm.get('email').touched) &&
+            contactForm.get('email').errors
+        }"
+      >
+        <label for="emailid" class="col-md-2 control-label"
+          >Email <span class="required">*</span></label
+        >
+        <div class="col-md-8">
+          <input
+            type="email"
+            id="emailid"
+            class="form-control"
+            placeholder="Email"
+            formControlName="email"
+          />
+          <em
+            class="text-danger"
+            *ngIf="
+              (contactForm.get('email').dirty ||
+                contactForm.get('email').touched) &&
+              contactForm.get('email').errors?.required
+            "
+            >please enter your Email</em
+          >
+          <em
+            class="text-danger"
+            *ngIf="
+              (contactForm.get('email').dirty ||
+                contactForm.get('email').touched) &&
+              contactForm.get('email').errors?.pattern
+            "
+            >Email is invalid, please enter the correct email</em
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="PhoneId" class="col-md-2 control-label">Phone</label>
+        <div class="col-md-8">
+          <input
+            type="tel"
+            id="PhoneId"
+            class="form-control"
+            placeholder="Phone"
+            formControlName="phone"
+          />
+          <em class="text-danger"></em>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">Social Media</label>
+
+        <div class="col-md-8">
+          <label class="radio-inline">
+            <input
+              type="radio"
+              name="socialmedia"
+              value="fb"
+              formControlName="socialmedia"
+            />facebook
+          </label>
+          <label class="radio-inline">
+            <input
+              type="radio"
+              name="socialmedia"
+              value="tw"
+              formControlName="socialmedia"
+            />Twitter
+          </label>
+          <label class="radio-inline">
+            <input
+              type="radio"
+              name="socialmedia"
+              value="none"
+              formControlName="socialmedia"
+            />None
+          </label>
+          <input
+            type="text"
+            id="socialmediatextId"
+            class="form-control"
+            formControlName="socialmediatext"
+            *ngIf="display"
+          />
+          <em
+            class="text-danger"
+            *ngIf="
+              (contactForm.get('socialmediatext')?.dirty ||
+                contactForm.get('socialmediatext')?.touched) &&
+              contactForm.get('socialmediatext').errors?.required
+            "
+            >please enter the url for your social media
+          </em>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="" class="col-md-2 control-label">Birth Date</label>
+        <div class="col-md-8">
+          <mat-form-field>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              placeholder="Choose a date"
+              formControlName="birthdate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div>
+        <fieldset>
+          <div class="form-group">
+            <label for="street1" class="col-md-2 control-label"
+              >Street Address 1</label
+            >
+            <div class="col-md-9">
+              <input
+                type="text"
+                id="street1"
+                class="form-control"
+                placeholder="Street Address 1"
+                formControlName="street1"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="street2" class="col-md-2 control-label"
+              >Street Address 2</label
+            >
+            <div class="col-md-9">
+              <input
+                type="text"
+                id="street2"
+                class="form-control"
+                placeholder="Street Address 2"
+                formControlName="street2"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="city" class="col-md-2 control-label">City</label>
+            <div class="col-md-2">
+              <input
+                type="text"
+                id="city"
+                class="form-control"
+                placeholder="City"
+                formControlName="city"
+              />
+            </div>
+
+            <label for="state" class="col-md-1 control-label">State</label>
+            <div class="col-md-2">
+              <select id="state" class="form-control" formControlName="state">
+                <option>--select--</option>
+                <option *ngFor="let item of states" [ngValue]="item">
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+
+            <label for="zipCode" class="col-md-1 control-label">ZipCode</label>
+
+            <div class="col-md-2">
+              <input
+                type="text"
+                id="zipCode"
+                class="form-control"
+                placeholder="ZipCode"
+                formControlName="zipCode"
+              />
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <!-- address -->
+
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="listgroupId"
+          >List of Groups</label
+        >
+        <div class="col-md-8">
+          <select
+            id="listgroupId"
+            class="form-control"
+            multiple
+            formControlName="listgroup"
+          >
+            <option>-- Select --</option>
+            <option *ngFor="let item of listgroups" [value]="item">
+              {{ item.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-md-2 control-label">Comments</label>
+        <div class="col-md-8">
+          <textarea
+            type="textarea"
+            id=""
+            class="form-control"
+            rows="3"
+            formControlName="comment"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="" class="col-md-2"></label>
+        <div class="col-md-8">
+          <input
+            type="submit"
+            class="btn btn-primary"
+            value="Save"
+            (click)="onSubmit(contactForm)"
+            [disabled]="!contactForm.valid"
+          />
+          &nbsp;
+          <input
+            type="button"
+            class="btn btn-primary"
+            value="cancel"
+            (click)="onCancel()"
+            [disabled]="contactForm.valid"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="panel-footer"></div>
+</div>
+
+<br />
+
+<span>Dirty: </span>
+{{ contactForm.dirty }}
+<br />
+<span>touched</span>
+{{ contactForm.touched }}
+<br />
+<span>valid</span>
+{{ contactForm.valid }}
+<br />
+<span>Json</span>
+<br />
+{{ contactForm.value | json }}
+
+<br />
+<br />

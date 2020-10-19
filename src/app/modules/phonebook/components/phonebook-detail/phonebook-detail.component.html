@@ -1,0 +1,280 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4>{{ pageTitle }}</h4>
+  </div>
+
+  <div class="panel panel-body">
+    <form class="form-horizontal" #f="ngForm">
+      <div class="form-group">
+        <label for="firstNameId" class="col-md-2 control-label"
+          >First Name</label
+        >
+        <div class="col-md-8">
+          <input
+            disabled
+            type="text"
+            id="firstNameId"
+            class="form-control"
+            placeholder="First Name"
+            name="firstName"
+            [(ngModel)]="contact.firstName"
+            #firstNameCtrl="ngModel"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastNameId" class="col-md-2 control-label">Last Name</label>
+        <div class="col-md-8">
+          <input
+            disabled
+            type="text"
+            id="lastNameId"
+            class="form-control"
+            placeholder="Last Name"
+            name="lastName"
+            [(ngModel)]="contact.lastName"
+            #lastNameCtrl="ngModel"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="emailid" class="col-md-2 control-label">Email</label>
+        <div class="col-md-8">
+          <input
+            disabled
+            type="email"
+            id="emailid"
+            class="form-control"
+            placeholder="Email"
+            name="email"
+            [(ngModel)]="contact.email"
+            #emailCtrl="ngModel"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="PhoneId" class="col-md-2 control-label">Phone</label>
+        <div class="col-md-8">
+          <input
+            disabled
+            [(ngModel)]="contact.phone"
+            type="tel"
+            id="PhoneId"
+            class="form-control"
+            placeholder="Phone"
+            name="phone"
+            #phoneCtrl="ngModel"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">Social Media</label>
+
+        <div class="col-md-8">
+          <label class="radio-inline">
+            <input
+              disabled
+              type="radio"
+              name="socialmedia"
+              value="fb"
+              [(ngModel)]="contact.socialmedia"
+              #socialfbCtrl="ngModel"
+            />facebook
+          </label>
+          <label class="radio-inline">
+            <input
+              disabled
+              type="radio"
+              name="socialmedia"
+              value="tw"
+              [(ngModel)]="contact.socialmedia"
+              #twitterCtrl="ngModel"
+            />Twitter
+          </label>
+          <label class="radio-inline">
+            <input
+              disabled
+              type="radio"
+              name="socialmedia"
+              value="none"
+              [(ngModel)]="contact.socialmedia"
+              #noneCtrl="ngModel"
+            />None
+          </label>
+
+          <ng-container *ngIf="this.contact.socialmedia; then socialMediaText">
+          </ng-container>
+
+          <ng-template #socialMediaText>
+            <input
+              disabled
+              type="text"
+              id="socialmediatextId"
+              class="form-control"
+              name="socialmediatext"
+              [(ngModel)]="contact.socialmediatext"
+            />
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="" class="col-md-2 control-label">Birth Date</label>
+        <div class="col-md-8">
+          <mat-form-field>
+            <input
+              disabled
+              matInput
+              [matDatepicker]="picker"
+              placeholder="Choose a date"
+              name="birthdate"
+              [(ngModel)]="contact.birthdate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <fieldset>
+        <div class="form-group">
+          <label for="street1" class="col-md-2 control-label"
+            >Street Address 1</label
+          >
+          <div class="col-md-9">
+            <input
+              disabled
+              type="text"
+              id="street1"
+              class="form-control"
+              placeholder="Street Address 1"
+              name="street1"
+              [(ngModel)]="contact.street1"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="street2" class="col-md-2 control-label"
+            >Street Address 2</label
+          >
+          <div class="col-md-9">
+            <input
+              disabled
+              type="text"
+              id="street2"
+              class="form-control"
+              placeholder="Street Address 2"
+              name="street2"
+              [(ngModel)]="contact.street2"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="city" class="col-md-2 control-label">City</label>
+          <div class="col-md-2">
+            <input
+              disabled
+              type="text"
+              id="city"
+              class="form-control"
+              placeholder="City"
+              name="city"
+              [ngModel]="contact.city"
+            />
+          </div>
+
+          <label for="state" class="col-md-1 control-label">State</label>
+          <div class="col-md-2">
+            <select
+              disabled
+              class="form-control"
+              name="state"
+              [(ngModel)]="contact.state"
+              placeholder="Select State"
+            >
+              <option *ngFor="let item of states">
+                {{ item }}
+              </option>
+            </select>
+          </div>
+
+          <label for="zipCode" class="col-md-1 control-label">ZipCode</label>
+
+          <div class="col-md-2">
+            <input
+              disabled
+              type="text"
+              id="zipCode"
+              class="form-control"
+              placeholder="ZipCode"
+              name="zipCode"
+              [(ngModel)]="contact.zipCode"
+            />
+          </div>
+        </div>
+      </fieldset>
+      <!-- address -->
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">List of Groups</label>
+        <div class="col-md-8">
+          <select
+            disabled
+            class="form-control"
+            multiple
+            name="listgroup"
+            [(ngModel)]="selectedItem"
+          >
+            <option *ngFor="let item of selectedItem">
+              {{ item.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-md-2 control-label">Comments</label>
+        <div class="col-md-8">
+          <textarea
+            disabled
+            type="textarea"
+            id=""
+            class="form-control"
+            rows="3"
+            name="comment"
+            [(ngModel)]="contact.comment"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="" class="col-md-2"></label>
+        <div class="col-md-8">
+          <input
+            type="button"
+            class="btn btn-primary"
+            value="Back"
+            (click)="onBack()"
+          />
+          &nbsp;
+          <input
+            class="col-md-8"
+            type="button"
+            class="btn btn-primary"
+            value="Edit"
+            [routerLink]="['/phonebook', contact.id, 'edit']"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="panel-footer"></div>
+</div>
+
+<br />
+<br />
+<br />

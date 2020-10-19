@@ -1,0 +1,89 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4>{{ pageTitle }}</h4>
+  </div>
+
+
+
+  <!-- | async -->
+  <div
+
+    *ngIf="contacts ; else nophonebook"
+    class="container"
+  >
+    <div class="filter">
+      <app-filter-textbox
+        class="navbar-right"
+        (changed)="filterChanged($event)"
+      ></app-filter-textbox>
+    </div>
+
+    <div class="row grid-container">
+      <div class="col-md-12">
+        <div class="table">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th href="" SortBy="firstName" (sorted)="sort($event)">
+                  First Name
+                </th>
+                <th SortBy="firstName" (sorted)="sort($event)">Last Name</th>
+                <th SortBy="lastName" (sorted)="sort($event)">Email</th>
+                <th SortBy="email" (sorted)="sort($event)">Phone</th>
+                <th SortBy="phone" (sorted)="sort($event)">Social Media</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let contact of contacts;
+                  trackBy: trackByService.trackby
+                "
+              >
+                <td>
+                  <a [routerLink]="['/phonebook/', contact.id, 'detail']">
+                    {{ contact.firstName | capitalize }}
+                  </a>
+                </td>
+                <td>{{ contact.lastName | capitalize }}</td>
+                <td>{{ contact.email | titlecase }}</td>
+                <td>{{ contact.phone | capitalize }}</td>
+                <td>{{ contact.socialmedia | capitalize }}</td>
+
+                <td>
+                  <a [routerLink]="['/phonebook', contact.id, 'edit']">
+                    Edit
+                  </a>
+                </td>
+                <td>
+                  <a
+                    style="cursor: pointer"
+                    (click)="delete($event, contact.id)"
+                  >
+                    Delete
+                  </a>
+                </td>
+              </tr>
+              <tr *ngIf="!contacts.length">
+                <td>&nbsp;</td>
+                <td colspan="7">No Records Found</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #nophonebook> Could not find the book </ng-template>
+</div>
+
+<app-pagination
+  [totalItems]="totalRecords"
+  [pageSize]="pageSize"
+  (pageChanged)="pageChanged($event)"
+></app-pagination>
