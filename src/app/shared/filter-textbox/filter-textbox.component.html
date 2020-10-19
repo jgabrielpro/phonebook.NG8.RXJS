@@ -1,0 +1,9 @@
+<form>
+        Filter By:
+        <input
+        id="filterElement"
+        #filterElement
+        type="text" name="filter"
+            [(ngModel)]="listFilter"
+            (keyup)="filterChanged($event)"  />
+</form>

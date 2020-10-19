@@ -1,0 +1,30 @@
+<app-header></app-header>
+
+<div class="panel panel-primary">
+  <app-navbar></app-navbar>
+
+  <section>
+    <div class="row col-md-10">
+      <div [@slideInAnimation]="o.isActivated ? o.activatedRoute : ''">
+        <router-outlet #o="outlet" ></router-outlet>
+      </div>
+
+      <!-- <router-outlet ></router-outlet> -->
+    </div>
+
+    <div class="col-md-2">
+      <ng-container *ngIf="isAuthenticated; then broadcast"></ng-container>
+
+
+      <ng-template #broadcast >
+        <router-outlet  name="popup"></router-outlet>
+      </ng-template>
+
+
+    </div>
+  </section>
+
+  <span class="fa fa-spinner spinner" *ngIf="loading"></span>
+
+  <app-footer></app-footer>
+</div>
