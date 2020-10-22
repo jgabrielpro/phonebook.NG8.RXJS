@@ -1,7 +1,7 @@
 # phonebook.NG8.RXJS
 
-phonebook is a Python library for dealing with word pluralization.
-NG8: refer the version of the angualr, the applicaiotn use it. 
+phonebook is a Angular app use RXJS and Routing for save, update, Delete and search Contacts.
+NG8: refer the version of the angular, the applicaiotn use it. 
 RXJS refer that the applicaiton use RXJS no http. 
 
 ## Installation
