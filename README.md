@@ -1,8 +1,8 @@
 # phonebook.NG8.RXJS
 
-phonebook is a Angular app use RXJS and Routing for save, update, Delete and search Contacts.
-NG8: refer the version of the angular, the applicaiotn use it. 
-RXJS refer that the applicaiton use RXJS no http. 
+Phonebook is an Angular app use RXJS and Routing for save, update, Delete and search Contacts.
+NG8: refers to the version of the angular, the application uses it. 
+RXJS refers to that the application uses RXJS not http.
 
 ## Installation
 
